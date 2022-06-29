@@ -22,12 +22,17 @@ public class MyStudentRecordsMgmtApp {
         printListOfStudents(list);
     }
     public static void printListOfStudents(ArrayList<Student> list){
-//        for (Student student:list) {
-//            System.out.println(student);
-//        }
-        list.forEach(input-> {
+        list.stream().sorted((x,y)->x.getName().compareTo(y.getName())).forEach(input-> {
             System.out.println(input);
         });
+    }
+
+    public static void getListOfPlatinumAlumniStudent(ArrayList<Student> list){
+        list.stream().filter(x->x.getDateOfAdmission().plusYears(30).isBefore(LocalDate.now()))
+                .forEach(input-> {
+                    System.out.println(input);
+                });
+
     }
 
 }
